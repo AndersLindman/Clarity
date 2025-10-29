@@ -1,9 +1,19 @@
 
 # Clarity: Noisy Key Exchange
 
-**Clarity** is a transparent, educational implementation of post-quantum key exchange that demonstrates the core principles of **lattice-based cryptography** through simple, noisy modular arithmetic.
+**Clarity** is a transparent, educational implementation of a key exchange that demonstrates the core principles of **lattice-based cryptography** through simple, noisy modular arithmetic.
 
 Unlike optimized production protocols that hide complexity behind algebraic structures, Clarity strips away the optimizations to reveal the **fundamental concept**: secure key exchange through controlled noise and reconciliation.
+
+### ⚠️ Security Note: Vulnerability to Brute Force
+
+The default parameters use a secret size of **40 bits** for demonstration speed and to ensure $100\%$ key agreement.
+
+**This implementation is NOT secure for production use.** The small $\approx 2^{40}$ secrets are vulnerable to a **bit-by-bit brute-force attack (Guess and Check)**, which can be completed in seconds on a modern computer.
+
+For educational security analysis:
+* To slow down the brute-force attack significantly, increase the `SECRET_MAX` in the code to require $\mathbf{80}$ or more bits of entropy.
+* For actual post-quantum security against a quantum computer, secrets and noise would need to be coupled across all 256 dimensions and sampled from a distribution whose security is based on a problem with a complexity of $\mathbf{2^{256}}$ or higher (like Kyber's Module-LWE).?
 
 > 💡 **Philosophy**: *"Make the complex comprehensible"*
 
